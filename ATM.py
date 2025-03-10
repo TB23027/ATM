@@ -4,17 +4,15 @@ history = []
 pin = 1234
 
 def check_balance():
-       
     print(f"${balance}")
     
-
 def withdraw():
     global balance  
     print(f"Your current balance is: {balance}")
     try:
         withdraw_amount = int(input("Enter how much you would like to withdraw: "))
         new_amount = (balance - withdraw_amount)
-        if new_amount <= 0:        
+        if new_amount < 0:        
             print("Insufficient funds")
         else:
             print(f"Balance updated, {withdraw_amount} withdrawn")
@@ -40,7 +38,28 @@ def transaction_history():
     print(history)
 
 def main():
-    print("Hello, welcome to the atm, What would you like to do?")
+    print("Welcome to the ATM!")
+    
+    
+    attempts = 0
+    while attempts < 3:
+        try:
+            user_pin = int(input("Please enter your PIN: "))
+            if user_pin == pin:
+                print("PIN accepted. Access granted.")
+                break
+            else:
+                attempts += 1
+                print(f"Incorrect PIN. You have {3 - attempts} attempts left.")
+        except ValueError:
+            print("PIN must be a number.")
+            attempts += 1
+
+    if attempts == 3:
+        print("Too many failed attempts. Exiting program.")
+        return
+    
+    
     options = {
         1: check_balance,
         2: withdraw,
@@ -51,7 +70,7 @@ def main():
 
     while True:
         try:
-            print("Option 1. Check balance.")
+            print("\nOption 1. Check balance.")
             print("Option 2. Withdraw money.")
             print("Option 3. Deposit money.")
             print("Option 4. View transaction history.")
