@@ -4,12 +4,12 @@ history = []
 pin = 1234
 
 def check_balance():
-    global balance  # Declare balance as global
+       
     print(f"${balance}")
+    
 
 def withdraw():
-    global balance  # Declare balance as global
-    global history  # Declare history as global
+    global balance  
     print(f"Your current balance is: {balance}")
     try:
         withdraw_amount = int(input("Enter how much you would like to withdraw: "))
@@ -24,8 +24,7 @@ def withdraw():
         print("Must be a valid number/integer!")
 
 def deposit():
-    global balance  # Declare balance as global
-    global history  # Declare history as global
+    global balance   
     print(f"Your current balance is: ${balance}")
     try:
         deposited = int(input("How much would you like to deposit: "))
@@ -38,7 +37,6 @@ def deposit():
         print("Must be a valid number/integer!")
 
 def transaction_history():
-    global history  # Declare history as global
     print(history)
 
 def main():
